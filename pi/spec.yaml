@@ -1,0 +1,31 @@
+schemaVersion: "1"
+kind: agent
+name: pi
+agent:
+  image: "docker/sandbox-templates:shell-docker"
+  aiFilename: AGENTS.md
+  entrypoint:
+    run: [pi]
+
+network:
+  allowedDomains:
+    - "pi.dev:443"
+    - "host.docker.internal:1234"
+    - "registry.npmjs.org:443"
+    - "localhost:1234"
+
+environment:
+  variables:
+    IS_SANDBOX: "1"
+    PI_CODING_AGENT_DIR: "~"
+    NPM_CONFIG_FETCH_RETRIES: "5"
+    NPM_CONFIG_FETCH_RETRY_MINTIMEOUT: "2000"
+    NPM_CONFIG_FETCH_RETRY_MAXTIMEOUT: "60000"
+    NPM_CONFIG_FETCH_TIMEOUT: "600000"
+    NPM_CONFIG_MAXSOCKETS: "3"
+
+commands:
+  install:
+    - command: "sh -c 'for i in 1 2 3 4 5; do echo \"--- attempt $i ---\"; npm install -g --ignore-scripts @earendil-works/pi-coding-agent && exit 0; done; exit 1'"
+      user: "1000"
+      description: Install Pi (with retries)

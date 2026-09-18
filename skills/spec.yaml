@@ -1,0 +1,11 @@
+schemaVersion: "1"
+kind: mixin
+name: skills
+
+commands:
+  install:
+    - command: "npx skills add https://github.com/vercel-labs/skills --skill find-skills -g -y"
+      user: "1000"
+      description: Install Skills
+
+    
