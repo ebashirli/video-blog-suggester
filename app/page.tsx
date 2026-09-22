@@ -18,17 +18,13 @@ export default function Home() {
           </p>
         </div>
 
-        {!session && (
-          <LoginButton />
-        )}
-
         {isPending && (
           <div className="mt-8 rounded-lg bg-gray-200 px-6 py-3 text-gray-500 dark:bg-zinc-800">
             Checking session...
           </div>
         )}
 
-        {session?.user && (
+        {!isPending && session?.user && (
           <div className="flex items-center gap-4 mt-8 rounded-2xl bg-white p-8 shadow-lg dark:bg-zinc-900/50 sm:p-12">
             <img
               src={session.user.image || 'https://github.com/shadcn.png'}
@@ -41,6 +37,12 @@ export default function Home() {
                 {session.user.name || session.user.email}
               </h2>
             </div>
+          </div>
+        )}
+
+        {!isPending && (
+          <div className="mt-8">
+            <LoginButton />
           </div>
         )}
       </main>

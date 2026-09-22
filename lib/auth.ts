@@ -2,24 +2,16 @@ import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { db } from '@/db/db'
 import { env } from './env'
-
-// Disable schema validation for development with SQLite
-const isDev = process.env.NODE_ENV === 'development'
-const useSqlite = process.env.USE_SQLITE === 'true' || isDev
+import * as schema from '@/db/schemas/auth'
 
 export const auth = betterAuth({
   secret: env.BETTER_AUTH_SECRET,
   baseURL: env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-  
-  database: drizzleAdapter(db, {
-    provider: 'sqlite' as const,
-  }),
 
-  emailVerification: {
-    sendVerificationEmail: async (params) => {
-      // Optional: implement custom email verification logic
-    },
-  },
+  database: drizzleAdapter(db, {
+    provider: 'pg',
+    schema,
+  }),
 
   socialProviders: {
     github: {
