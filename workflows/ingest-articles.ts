@@ -77,6 +77,6 @@ async function ingestArticle(article: RssArticle) {
   // neon-http batches run in a single transaction
   await db.batch([
     insertContent,
-    db.insert(chunksTable).values(parsed.chunks.map((text) => ({ contentId, text }))),
+    db.insert(chunksTable).values(parsed.chunks.map((text: string) => ({ contentId, text }))),
   ])
 }
