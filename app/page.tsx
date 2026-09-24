@@ -36,6 +36,9 @@ export default function Home() {
               <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {session.user.name || session.user.email}
               </h2>
+              {session.user.email && (
+                <p className="text-sm text-gray-600 dark:text-zinc-400">{session.user.email}</p>
+              )}
             </div>
           </div>
         )}
