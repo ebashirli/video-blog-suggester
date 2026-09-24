@@ -12,7 +12,8 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "db:reset": "drizzle-kit reset",
-    "auth:generate-schema": "auth generate --output ./db/schemas/auth.ts --config ./lib/auth/config.ts --yes"
+    "auth:generate-schema": "auth generate --output ./db/schemas/auth.ts --config ./lib/auth/config.ts --yes",
+    "test": "node --import tsx --test \"lib/**/*.test.ts\""
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
