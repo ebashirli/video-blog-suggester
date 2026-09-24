@@ -4,12 +4,12 @@ import { z } from 'zod'
 export const env = createEnv({
   server: {
     BETTER_AUTH_SECRET: z.string().min(32, 'SECRET must be at least 32 characters').default('BH3EhK6M9dG5ex+JWiozk5MigvxPv+kT6c8TQmEn6Sg='),
-    DATABASE_URL: z.string().url(),
+    DATABASE_URL: z.url(),
     GITHUB_CLIENT_ID: z.string().min(1, 'GitHub Client ID is required'),
     GITHUB_CLIENT_SECRET: z.string().min(1, 'GitHub Client Secret is required'),
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().url(),
+    NEXT_PUBLIC_APP_URL: z.url(),
   },
   runtimeEnv: {
     BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
