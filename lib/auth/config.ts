@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { drizzleAdapter } from '@better-auth/drizzle-adapter/relations-v2'
 import { db } from '@/db/db'
-import { env } from './env'
+import { env } from '../env'
 import * as schema from '@/db/schemas/auth'
 
 export const auth = betterAuth({
@@ -12,6 +12,12 @@ export const auth = betterAuth({
     provider: 'pg',
     schema,
   }),
+
+  advanced: {
+    database: {
+      generateId: "uuid"
+    }
+  },
 
   socialProviders: {
     github: {

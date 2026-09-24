@@ -1,6 +1,6 @@
 'use client'
 
-import { signIn, signOut, useSession } from '@/lib/auth-client'
+import { signIn, signOut, useSession } from '@/lib/auth/client'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
